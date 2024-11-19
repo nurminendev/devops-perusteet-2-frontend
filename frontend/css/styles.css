@@ -1,0 +1,54 @@
+/*
+ * devops-perusteet-2-frontend
+ *
+ * https://tieto.nurminen.dev/devops-perusteet-2
+ *
+ * CSS tyylit
+ *
+ */
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    font-family: sans-serif;
+    line-height: 1.7;
+}
+
+
+/* Keskitä todo-sovellus div ja aseta reunukset */ 
+.todo-sovellus {
+    margin: 20px 10px 20px 10px;
+    text-align: center;
+}
+
+/* Ylä- ja alareunus itse todo listaan */ 
+.todo-sovellus #todo-lista {
+    margin: 20px 0;
+}
+
+/* Todo rivi on "flex" container jotta saamme tekstin ja napit nätisti samalle riville */ 
+.todo-sovellus #todo-lista .todo-rivi {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 10px;
+}
+
+/* Todo rivin eka divi 400px leveä, pienenee jos ei mahdu ruutuun koska flex-shrink oletuksena 1 */ 
+.todo-sovellus #todo-lista .todo-rivi > div:first-child {
+    flex-basis: 400px;
+}
+
+/* Inputti ekan divin sisällä on 100% ylläolevan divin leveydestä */ 
+.todo-sovellus #todo-lista .todo-rivi > div > input {
+    width: 100%;
+}
+
+/* Virhe divin tyylit */ 
+.todo-sovellus #virhe {
+    color: red;
+    margin: 20px 0;
+}
