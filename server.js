@@ -32,10 +32,14 @@ function setupRoutes(app) {
     const frontendDir = path.resolve(__dirname, 'frontend')
 
     const cssDir = path.join(frontendDir, 'css')
+    const imagesDir = path.join(frontendDir, 'images')
     const jsDir = path.join(frontendDir, 'js')
 
     // Tarjoa frontend/css hakemisto /css URL:n takana
     app.use('/css', express.static(cssDir, { etag: false, lastModified: false, maxAge: '16070400 sec' }))
+
+    // Tarjoa frontend/images hakemisto /images URL:n takana
+    app.use('/images', express.static(imagesDir, { etag: false, lastModified: false, maxAge: '16070400 sec' }))
 
     // Tarjoa frontend/js hakemisto /js URL:n takana
     app.use('/js', express.static(jsDir, { etag: false, lastModified: false, maxAge: '16070400 sec' }))

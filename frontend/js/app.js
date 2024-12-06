@@ -8,16 +8,18 @@
 
 
 // Täysi URL backendiin
-const backendUrl = 'http://localhost:4000'
+const backendUrl = 'http://192.168.1.144:4000'
 
 // Muuttuja johon tallennetaan TODO avain
 let todoAvain = ''
 
 
 // Avaa ja hakee todo listan avaimella
-function avaaTodoLista() {
-    const todoAvainInputEl = document.getElementById('todo-avain-input')
-    todoAvain = todoAvainInputEl.value
+function avaaTodoLista(e) {
+    e.preventDefault()
+
+    const todoKirjauduInputEl = document.getElementById('todo-kirjaudu-input')
+    todoAvain = todoKirjauduInputEl.value
 
     paivitaTodoLista()
 }
@@ -47,7 +49,9 @@ async function paivitaTodoLista() {
 
 
 // Lisää uuden TODO rivin backendiin
-async function uusiTodoRivi() {
+async function uusiTodoRivi(e) {
+    e.preventDefault()
+
     // Haetaan uuden TODO rivin input elementti, tämä luotiin renderoiTodoLista() funktiossa
     const todoRiviInputEl = document.getElementById(`uusi-todo-rivi-input`)
 
@@ -64,6 +68,12 @@ async function uusiTodoRivi() {
 
         // Hae päivitetty TODO lista ja renderöi se sivulle
         paivitaTodoLista()
+
+        // Tyhjennä input kenttä
+        todoRiviInputEl.value = ''
+
+        // Poista focus input kentästä, piilottaa näppäimistön mobiilissa
+        todoRiviInputEl.blur()
     } catch (error) {
         kasitteleVirhe(error)
     }
@@ -126,12 +136,13 @@ function renderoiTodoLista(todoLista) {
     if(!Array.isArray(todoLista)) return
 
     // Hae elementit sivulla
-    const todoAvainEl = document.getElementById('todo-avain')
+    const todoKirjauduEl = document.getElementById('todo-kirjaudu')
     const todoListaEl = document.getElementById('todo-lista')
+    const todoListaRivitEl = document.getElementById('todo-lista-rivit')
     const virheEl = document.getElementById('virhe')
 
     // Piilota "Syötä TODO avain" divi
-    todoAvainEl.style.display = 'none'
+    todoKirjauduEl.style.display = 'none'
 
     // Näytä itse todo lista
     todoListaEl.style.display = 'block'
@@ -153,16 +164,8 @@ function renderoiTodoLista(todoLista) {
         `
     })
 
-    // Renderöi viimeiseksi "uusi todo rivi" kenttä
-    todoListaHtml += `
-        <div class="todo-rivi">
-          <div><input type="text" id="uusi-todo-rivi-input"></div>
-          <div><button type="button" onclick="uusiTodoRivi()">Lisää TODO rivi</button></div>
-        </div>
-    `
-
     // Aseta TODO rivien html #todo-lista divin sisällöksi
-    todoListaEl.innerHTML = todoListaHtml
+    todoListaRivitEl.innerHTML = todoListaHtml
 }
 
 
@@ -220,11 +223,11 @@ function kasitteleVirhe(error) {
 
 // Renderöi virheen sivulle
 function renderoiVirhe(text) {
-    const todoAvainEl = document.getElementById('todo-avain')
+    const todoKirjauduEl = document.getElementById('todo-kirjaudu')
     const todoListaEl = document.getElementById('todo-lista')
     const virheEl = document.getElementById('virhe')
 
-    todoAvainEl.style.display = 'block'
+    todoKirjauduEl.style.display = 'block'
     todoListaEl.style.display = 'none'
     virheEl.style.display = 'block'
 

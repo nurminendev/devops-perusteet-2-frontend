@@ -12,25 +12,89 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
+
+    font-family: "Montserrat", serif;
     font-size: 18px;
-    font-family: sans-serif;
-    line-height: 1.7;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+
+    color: #f6f6f6;
+
+    background-color: #e55c8a;
+}
+
+
+input, button {
+    font-size: 0.9rem;
+    font-family: "Montserrat", sans-serif;
+    background-color: #343a40;
+    border: 1px solid #2e3238;
+    border-radius: 4px;
+    height: 30px;
+    outline: 0;
+    color: #f6f6f6;
+}
+
+
+form { margin: 0; }
+
+
+.todo-container {
+    display: flex;
+    height: 100dvh;
+    align-items: center;
+    justify-content: center;
 }
 
 
 /* Keskitä todo-sovellus div ja aseta reunukset */ 
 .todo-sovellus {
-    margin: 20px 10px 20px 10px;
+    width: 700px;
+    margin: 20px;
+
+    background-color: #3c424a;
+
+    border-radius: 5px;
+
+    -webkit-box-shadow: 0px 0px 15px -5px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 15px -5px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 15px -5px rgba(0,0,0,0.75);
+}
+
+@media screen and (max-width: 768px) {
+}
+
+header {
+    border-bottom: 1px solid #343940;
     text-align: center;
+    padding: 10px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.7rem;
+}
+
+.todo-body {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#todo-kirjaudu {
+    margin: 50px 0;
 }
 
 /* Ylä- ja alareunus itse todo listaan */ 
-.todo-sovellus #todo-lista {
+#todo-lista {
     margin: 20px 0;
 }
 
 /* Todo rivi on "flex" container jotta saamme tekstin ja napit nätisti samalle riville */ 
-.todo-sovellus #todo-lista .todo-rivi {
+#todo-lista .todo-rivi {
     display: flex;
     justify-content: center;
     gap: 20px;
@@ -38,17 +102,31 @@ body {
 }
 
 /* Todo rivin eka divi 400px leveä, pienenee jos ei mahdu ruutuun koska flex-shrink oletuksena 1 */ 
-.todo-sovellus #todo-lista .todo-rivi > div:first-child {
+#todo-lista .todo-rivi > div:first-child {
     flex-basis: 400px;
 }
 
 /* Inputti ekan divin sisällä on 100% ylläolevan divin leveydestä */ 
-.todo-sovellus #todo-lista .todo-rivi > div > input {
+#todo-lista .todo-rivi > div > input {
     width: 100%;
+}
+
+#todo-lista .todo-uusi-rivi {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #343940;
+    padding-bottom: 15px;
+}
+
+#todo-lista .todo-uusi-rivi input {
+    width: 100%;
+    background: url('/images/list-icon.svg') 4px 2px no-repeat;
+    background-size: 23px 23px;
+    background-color: #343a40;
+    padding-left: 32px;
 }
 
 /* Virhe divin tyylit */ 
 .todo-sovellus #virhe {
-    color: red;
+    font-weight: bold;
     margin: 20px 0;
 }

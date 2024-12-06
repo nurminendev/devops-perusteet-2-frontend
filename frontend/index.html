@@ -2,24 +2,45 @@
   <head>
     <title>TODO-sovellus</title>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="/css/styles.css">
   </head>
   <body>
-    <div class="todo-sovellus">
-      <h1>TODO-sovellus</h1>
+    <div class="todo-container">
+      <div class="todo-sovellus">
+        <header>
+          <h1>TODO-sovellus</h1>
+        </header>
 
-      <div id="todo-avain">
-        <p>
-          Syötä TODO avain:
-        </p>
-        <input type="password" id="todo-avain-input">
-        <button type="button" onclick="avaaTodoLista()">Avaa TODO-lista</button>
+        <div class="todo-body">
+          <div id="todo-kirjaudu">
+            <form id="kirjaudu-form" onsubmit="avaaTodoLista(event)">
+              <input type="password" id="todo-kirjaudu-input" placeholder="Todo avain...">
+              <button type="submit">Kirjaudu</button>
+            </form>
+          </div>
+
+          <div id="todo-lista" style="display:none;">
+            <div class="todo-uusi-rivi">
+              <form id="uusi-todo-rivi-form" onsubmit="uusiTodoRivi(event)">
+                <input type="text" id="uusi-todo-rivi-input" placeholder="Lisää TODO rivi...">
+              </form>
+            </div>
+
+            <div id="todo-lista-rivit"></div>
+          </div>
+
+          <div id="virhe" style="display: none;"></div>
+
+        </div>
+
       </div>
-
-      <div id="todo-lista" style="display:none;"></div>
-
-      <div id="virhe" style="display: none;"></div>
-
     </div>
 
     <script src="/js/app.js"></script>
